@@ -1,0 +1,695 @@
+/* =========================================================
+   סטודיו רעיונות - קובץ העיצוב
+   טיפ: כדי לשנות צבעים בכל האתר, משנים רק את המשתנים כאן למטה.
+   ========================================================= */
+
+:root {
+  /* --- צבעי הקורס --- */
+  --teal-dark: #0B4F55;     /* טורקיז כהה - הצבע המוביל */
+  --teal: #12757C;          /* טורקיז בינוני */
+  --teal-light: #DDEFEE;    /* טורקיז בהיר מאוד לרקעים */
+  --mint: #EAF6F3;          /* רקע ירקרק עדין */
+  --yellow: #F5C542;        /* צהוב משלים */
+  --yellow-soft: #FFF4D1;   /* צהוב בהיר לרקעים */
+  --white: #FFFFFF;
+  --cream: #FBFAF6;         /* רקע כללי חם ונעים */
+
+  /* --- טקסט --- */
+  --text: #1E3536;
+  --text-muted: #5B7273;
+
+  /* --- צורות --- */
+  --radius: 20px;
+  --shadow: 0 6px 24px rgba(11, 79, 85, 0.08);
+  --shadow-hover: 0 14px 34px rgba(11, 79, 85, 0.16);
+}
+
+/* ---------- בסיס ---------- */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'Rubik', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+h1, h2, h3 { line-height: 1.2; margin: 0; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- כפתורים ---------- */
+.btn {
+  display: inline-block;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 12px 26px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn-yellow {
+  background: var(--yellow);
+  color: var(--teal-dark);
+  box-shadow: 0 6px 18px rgba(245, 197, 66, 0.35);
+}
+.btn-ghost {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--white);
+  background: transparent;
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.1); }
+
+.btn-outline {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: transparent;
+}
+.btn-outline:hover { background: var(--teal-light); }
+
+.btn-small {
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+}
+.btn-small:hover { background: var(--yellow); }
+
+/* ---------- 1. אזור עליון ---------- */
+.site-header {
+  background: var(--teal-dark);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-flower {
+  width: 38px;
+  height: 38px;
+  color: var(--white);
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-text strong { font-size: 1.15rem; }
+.brand-text small {
+  font-size: 0.78rem;
+  opacity: 0.75;
+  direction: ltr;   /* שם הקורס באנגלית */
+  text-align: right;
+}
+
+.main-nav { display: flex; gap: 28px; }
+.main-nav a { opacity: 0.85; transition: opacity 0.2s; }
+.main-nav a:hover { opacity: 1; color: var(--yellow); }
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--yellow);
+  color: var(--teal-dark);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* ---------- 2. אזור פתיחה ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--teal-dark) 0%, var(--teal) 100%);
+  color: var(--white);
+  padding: 90px 0 110px;
+  /* קצה תחתון מעוגל */
+  border-radius: 0 0 48px 48px;
+}
+.hero-inner { position: relative; max-width: 720px; text-align: center; }
+
+.eyebrow {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 3.6rem);  /* גודל שמשתנה לפי רוחב המסך */
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.highlight {
+  color: var(--yellow);
+  position: relative;
+  white-space: nowrap;
+}
+/* קו "בכתב יד" מתחת למילה המודגשת */
+.highlight::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -6px;
+  height: 8px;
+  background: var(--yellow);
+  border-radius: 50%;
+  opacity: 0.35;
+}
+.hero-text {
+  font-size: 1.15rem;
+  opacity: 0.9;
+  margin: 0 auto 32px;
+  max-width: 560px;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* פרחים דקורטיביים */
+.deco { position: absolute; pointer-events: none; }
+.deco-1 {
+  width: 220px; height: 220px;
+  top: -50px; left: -60px;
+  color: rgba(255, 255, 255, 0.07);
+  --flower-center: rgba(245, 197, 66, 0.25);
+  animation: spin 60s linear infinite;
+}
+.deco-2 {
+  width: 120px; height: 120px;
+  bottom: 30px; right: 6%;
+  color: rgba(245, 197, 66, 0.2);
+  --flower-center: rgba(255, 255, 255, 0.3);
+  animation: spin 45s linear infinite reverse;
+}
+.deco-3 {
+  width: 60px; height: 60px;
+  top: 70px; right: 18%;
+  color: rgba(255, 255, 255, 0.15);
+  --flower-center: var(--yellow);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- כותרות של אזורים ---------- */
+.section {
+  padding: 80px 0;
+  scroll-margin-top: 50px;  /* שהכותרת לא תוסתר מאחורי האזור העליון בקפיצה מהתפריט */
+}
+.section-tinted { background: var(--mint); }
+
+.section-title {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--teal-dark);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+.section-head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.section-head-row .section-subtitle { margin-bottom: 0; }
+
+/* ---------- 3. כרטיסיות המרחבים ---------- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.space-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  box-shadow: var(--shadow);
+  border-top: 5px solid var(--teal);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.space-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+/* כל כרטיסייה בגוון קצת אחר */
+.space-card:nth-child(2) { border-top-color: var(--yellow); }
+.space-card:nth-child(3) { border-top-color: var(--teal-dark); }
+
+.space-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--teal-light);
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+}
+.space-card:nth-child(2) .space-icon { background: var(--yellow-soft); }
+.space-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: var(--teal-dark);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.space-card h3 {
+  font-size: 1.35rem;
+  color: var(--teal-dark);
+  margin-bottom: 10px;
+}
+.space-card p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  flex-grow: 1;   /* דוחף את הכפתור לתחתית הכרטיס */
+}
+.card-link {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.card-link:hover { color: var(--teal-dark); text-decoration: underline; }
+
+/* ---------- 4. מסע החשיבה העיצובית ---------- */
+.journey {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  position: relative;
+}
+/* הקו המקווקו שמחבר בין השלבים */
+.journey::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  right: 8%;
+  left: 8%;
+  border-top: 3px dashed rgba(18, 117, 124, 0.3);
+}
+.step {
+  position: relative;
+  text-align: center;
+  padding: 0 6px;
+}
+.step-num {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--teal);
+  color: var(--teal-dark);
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+.step h3 { font-size: 1.1rem; color: var(--teal-dark); margin-bottom: 6px; }
+.step p { font-size: 0.92rem; color: var(--text-muted); }
+
+/* השלב הנוכחי מודגש בצהוב */
+.step-current .step-num {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  transform: scale(1.12);
+  box-shadow: 0 0 0 8px rgba(245, 197, 66, 0.25);
+}
+.step-badge {
+  display: inline-block;
+  margin-top: 10px;
+  background: var(--teal-dark);
+  color: var(--white);
+  font-size: 0.78rem;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+
+/* ---------- 5. כלים ותבניות ---------- */
+/* רקע מנוקד, כמו דף עבודה, כדי שיהיה ברור שזה אזור של כלים */
+.section-tools {
+  background-color: var(--white);
+  background-image: radial-gradient(rgba(18, 117, 124, 0.14) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.template-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 2px solid var(--teal-light);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.template-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--teal);
+}
+
+/* אזור ההמחשה: "דף" קטן מונח על שולחן העבודה */
+.template-preview {
+  background: var(--mint);
+  padding: 24px 28px;
+  height: 180px;
+  display: grid;
+  place-items: center;
+}
+.sheet {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(11, 79, 85, 0.1);
+  padding: 12px;
+  font-size: 0.72rem;
+  color: var(--teal-dark);
+  transform: rotate(-1.5deg);
+  transition: transform 0.25s;
+}
+.template-card:hover .sheet { transform: rotate(0deg) scale(1.03); }
+
+/* תבנית 1: שורות למילוי */
+.sheet-challenge { display: flex; flex-direction: column; justify-content: space-between; }
+.sheet-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--teal-light);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.sheet-row-accent { background: var(--yellow-soft); }
+.sheet-label { font-weight: 700; white-space: nowrap; }
+.sheet-line {
+  flex-grow: 1;
+  border-bottom: 2px dashed rgba(11, 79, 85, 0.25);
+  height: 0;
+}
+
+/* תבנית 2: ארבעה רבעים ודמות במרכז */
+.sheet-empathy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+}
+.quad {
+  background: var(--teal-light);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-weight: 700;
+}
+.quad:nth-child(2),
+.quad:nth-child(3) { background: var(--yellow-soft); }
+/* הטקסט ברבעים התחתונים יושב למטה, כדי לפנות מקום לדמות */
+.quad:nth-child(3),
+.quad:nth-child(4) { display: flex; align-items: flex-end; }
+.empathy-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--teal-dark);
+  border: 4px solid var(--white);
+  display: grid;
+  place-items: center;
+}
+.empathy-center svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* תבנית 3: מטריצת השפעה/מאמץ עם פתקים */
+.sheet-matrix { padding: 12px 12px 22px 12px; padding-right: 26px; }
+.axis {
+  position: absolute;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.axis-y {
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+.axis-x {
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.matrix {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+}
+.cell { background: var(--teal-light); border-radius: 4px; }
+.cell-best { background: var(--yellow-soft); outline: 2px dashed var(--yellow); outline-offset: -2px; }
+.note {
+  position: absolute;
+  width: 20px;
+  height: 18px;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(11, 79, 85, 0.15);
+}
+.note-1 { background: var(--yellow); top: 18%; right: 16%; transform: rotate(-6deg); }
+.note-2 { background: var(--yellow); top: 28%; right: 32%; transform: rotate(5deg); }
+.note-3 { background: var(--teal); top: 62%; left: 22%; transform: rotate(-4deg); }
+.note-4 { background: var(--white); border: 1px solid var(--teal-light); top: 20%; left: 26%; transform: rotate(4deg); }
+
+.template-body {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+/* תגית שמראה לאיזה שלב במסע התבנית מתאימה */
+.template-stage {
+  align-self: flex-start;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--teal);
+  background: var(--teal-light);
+  padding: 3px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.template-body h3 { font-size: 1.25rem; color: var(--teal-dark); margin-bottom: 8px; }
+.template-body p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
+
+.btn-template {
+  align-self: flex-start;
+  background: var(--teal-dark);
+  color: var(--white);
+  padding: 10px 22px;
+  font-size: 0.95rem;
+}
+.btn-template:hover { background: var(--yellow); color: var(--teal-dark); }
+
+/* ---------- 6. פרויקטים לדוגמה ---------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.project-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+.project-cover {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+}
+.cover-teal   { background: var(--teal); }
+.cover-yellow { background: var(--yellow); }
+.cover-mint   { background: var(--teal-light); }
+
+.cover-flower {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  left: -30px;
+  bottom: -50px;
+}
+.cover-teal .cover-flower   { color: rgba(255, 255, 255, 0.18); }
+.cover-yellow .cover-flower { color: rgba(255, 255, 255, 0.45); --flower-center: var(--teal); }
+.cover-mint .cover-flower   { color: rgba(18, 117, 124, 0.15); }
+
+.stage-tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--white);
+  color: var(--teal-dark);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.project-body {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.project-body h3 { font-size: 1.2rem; color: var(--teal-dark); margin-bottom: 8px; }
+.project-body p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 18px; flex-grow: 1; }
+
+.project-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
+.author { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+.author-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.a1 { background: var(--teal-light); color: var(--teal-dark); }
+.a2 { background: var(--yellow-soft); color: var(--teal-dark); }
+.a3 { background: var(--teal-dark); color: var(--white); }
+.meta { color: var(--text-muted); }
+.project-body .btn-small { align-self: flex-start; }
+
+/* ---------- תחתית ---------- */
+.site-footer {
+  text-align: center;
+  padding: 30px 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  border-top: 1px solid var(--teal-light);
+}
+
+/* ---------- הודעה קופצת ---------- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 120px);
+  background: var(--teal-dark);
+  color: var(--white);
+  padding: 14px 24px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-hover);
+  border-right: 5px solid var(--yellow);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  z-index: 20;
+  max-width: calc(100% - 32px);
+}
+.toast.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+/* =========================================================
+   התאמה למסכים קטנים (טאבלט וטלפון)
+   ========================================================= */
+@media (max-width: 900px) {
+  .cards-grid,
+  .projects-grid,
+  .templates-grid { grid-template-columns: 1fr 1fr; }
+
+  /* בטאבלט ובטלפון המסע הופך לרשימה אנכית (שישה שלבים לא נכנסים בשורה אחת) */
+  .journey {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .journey::before {
+    top: 20px;
+    bottom: 20px;
+    right: 27px;
+    left: auto;
+    border-top: none;
+    border-right: 3px dashed rgba(18, 117, 124, 0.3);
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    column-gap: 16px;
+    text-align: right;
+    padding: 0;
+  }
+  .step-num { margin: 0; grid-row: span 3; }
+  .step-badge { justify-self: start; margin-top: 6px; }
+}
+
+@media (max-width: 700px) {
+  .main-nav { display: none; }   /* בטלפון מסתירים את התפריט */
+
+  .hero { padding: 60px 0 80px; border-radius: 0 0 32px 32px; }
+  .hero-text { font-size: 1.05rem; }
+
+  .section { padding: 56px 0; }
+
+  .cards-grid,
+  .projects-grid,
+  .templates-grid { grid-template-columns: 1fr; }
+}
